@@ -1,5 +1,5 @@
-import 'package:app01/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:app01/widgets/user_transactions.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,15 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  final List<Transaction> transactions = [
-    Transaction(
-        id: 't1', title: 'New shoes', amount: 49.99, date: DateTime.now()),
-    Transaction(
-        id: 't2',
-        title: 'Weekly Groceries',
-        amount: 16.53,
-        date: DateTime.now()),
-  ];
+  String titleInput;
+  String amountInput;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +27,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter app'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Card(
@@ -45,30 +38,7 @@ class MyHomePage extends StatelessWidget {
             ),
             elevation: 5,
           ),
-          Column(
-            children: transactions.map((tx) {
-              return Card(
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      margin:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black, width: 2)),
-                      child: Text(tx.amount.toString()),
-                      padding: EdgeInsets.all(10),
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Text(tx.title),
-                        Text(tx.date.toString())
-                      ],
-                    )
-                  ],
-                ),
-              );
-            }).toList(),
-          )
+          UserTransactions()
         ],
       ),
     );
