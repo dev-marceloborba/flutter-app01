@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -25,21 +26,34 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter app'),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Card(
-            color: Colors.blue,
-            child: Container(
-              width: double.infinity,
-              child: Text('CHART!'),
-            ),
-            elevation: 5,
-          ),
-          UserTransactions()
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {},
+          )
         ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Card(
+              color: Colors.blue,
+              child: Container(
+                width: double.infinity,
+                child: Text('CHART!'),
+              ),
+              elevation: 5,
+            ),
+            UserTransactions()
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => {},
       ),
     );
   }
