@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
   final Function transactionHandler;
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
 
   NewTransaction(this.transactionHandler);
 
+  @override
+  _NewTransactionState createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
+
   void submitData() {
-    print('ããã');
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
 
@@ -16,7 +22,9 @@ class NewTransaction extends StatelessWidget {
       return;
     }
 
-    transactionHandler(enteredTitle, enteredAmount);
+    widget.transactionHandler(enteredTitle, enteredAmount);
+
+    Navigator.of(context).pop();
   }
 
   @override
